@@ -1,0 +1,47 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="logo">Password Generator</div>
+            <div class="navbar-links">
+                <a href="#">Home</a>
+                <a href="#">Login</a>
+                <a href="#">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <h1>Password Generator</h1>
+    <form action="{{ url_for('generate_password') }}" method="post">
+        <label for="length">Password Length:</label>
+        <input type="number" name="length" value="12" min="1" required><br>
+
+        <label>Character Types:</label><br>
+        <input type="checkbox" name="uppercase"> Uppercase
+        <input type="checkbox" name="lowercase" checked> Lowercase
+        <input type="checkbox" name="numbers" checked> Numbers
+        <input type="checkbox" name="special_characters"> Special Characters<br>
+
+        <label for="avoid_ambiguous">Avoid Ambiguous Characters:</label>
+        <input type="checkbox" name="avoid_ambiguous"><br>
+
+        <label for="words">Words (optional, separated by spaces):</label>
+        <input type="text" name="words"><br>
+
+        <button type="submit">Generate Password</button>
+    </form>
+
+    {% if password %}
+    <h2>Generated Password:</h2>
+    <p>{{ password }}</p>
+    {% endif %}
+</body>
+</html>
