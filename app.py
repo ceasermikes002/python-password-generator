@@ -24,8 +24,9 @@ def generate_password():
 
         # Generate password based on parameters
         password = generate_password_with_parameters(length, use_uppercase, use_lowercase, use_numbers, use_special_characters, avoid_ambiguous, words)
-
+    
         return render_template('index.html', password=password)
+    
 
 from flask import Flask, render_template, request
 import secrets
@@ -52,9 +53,12 @@ def generate_password():
         words = request.form.get('words', '').split()
 
         # Generate password based on parameters
-        password = generate_password_with_parameters(length, use_uppercase, use_lowercase, use_numbers, use_special_characters, avoid_ambiguous, words)
+        generated_password = generate_password_with_parameters(length, use_uppercase, use_lowercase, use_numbers, use_special_characters, avoid_ambiguous, words)
 
-        return render_template('index.html', password=password)
+        # Check the strength of the generated password
+        strength = password_strength(generated_password)
+
+        return render_template('index.html', password=generated_password, strength=strength)
 
 def generate_password_with_parameters(length, use_uppercase, use_lowercase, use_numbers, use_special_characters, avoid_ambiguous, words):
     # Define character sets
@@ -84,6 +88,26 @@ def generate_password_with_parameters(length, use_uppercase, use_lowercase, use_
         password = ' '.join(words) + ' ' + password
 
     return password
+
+def password_strength(password):
+    # Define a simple strength metric
+    strength = 0
+
+    # Check for the presence of different character types
+    if any(char.islower() for char in password):
+        strength += 1
+    if any(char.isupper() for char in password):
+        strength += 1
+    if any(char.isdigit() for char in password):
+        strength += 1
+    if any(char in string.punctuation for char in password):
+        strength += 1
+
+    # Increase strength if length is above a certain threshold
+    if len(password) >= 12:
+        strength += 1
+
+    return strength
 
 if __name__ == '__main__':
     app.run(debug=True)

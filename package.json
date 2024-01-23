@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.3.1"
+  },
+  "name": "password-generator",
+  "description": "This is a simple Flask web application that allows users to generate passwords based on various parameters such as length, character types, and the inclusion of words. The application aims to provide a user-friendly interface for creating secure and customized passwords.",
+  "version": "1.0.0",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "build": "npx tailwindcss -i ./input.css -o ./dist/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "flowbite": "^2.2.1"
+  }
+}

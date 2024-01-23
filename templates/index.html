@@ -1,63 +1,91 @@
 <!-- templates/index.html -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Password Generator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <script src="{{ url_for('static', filename='clipboard.js') }}"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-  </head>
-  <body>
-    <nav>
-      <div class="navbar">
-        <div class="logo">Password Generator</div>
-        <div class="navbar-links">
-          <a href="#">Home</a>
-          <a href="#">Login</a>
-          <a href="#">Sign Up</a>
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body class="bg-gray-100 bg-cover" style="background-image: url('data:image/svg+xml,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 version=%221.1%22 xmlns:xlink=%22http://www.w3.org/1999/xlink%22 xmlns:svgjs=%22http://svgjs.dev/svgjs%22 width=%221440%22 height=%22560%22 preserveAspectRatio=%22none%22 viewBox=%220 0 1440 560%22%3e%3cg mask=%22url(%23SvgjsMask1027)%22 fill=%22none%22%3e%3crect width=%221440%22 height=%22560%22 x=%220%22 y=%220%22 fill=%22rgba(21,67,96,1)%22%3e%3c/rect%3e%3cpath d=%22M0,649.347C116.233,616.966,172.303,490.542,268.145,417.242C353.54,351.932,464.269,326.583,531.603,242.775C611.007,143.944,682.873,28.694,682.174,-98.082C681.441,-231.108,620.469,-361.906,527.746,-457.294C437.346,-550.292,305.953,-581.883,180.376,-614.305C58.487,-645.774,-69.433,-682.879,-188.577,-642.235C-305.906,-602.211,-394.706,-503.379,-457.733,-396.628C-514.47,-300.53,-503.214,-185.012,-523.336,-75.244C-544.448,39.921,-602.414,149.678,-578.907,264.378C-552.479,393.329,-494.711,526.343,-385.103,599.232C-275.083,672.395,-127.279,684.806,0,649.347%22 fill=%22%230e2c3e%22%3e%3c/path%3e%3cpath d=%22M1440,1011.025C1556.493,1008.4,1664.085,1116.737,1775.156,1081.513,1890.525,1044.926,1969.5929999999998,934.8620000000001,2022.8600000000001,826.183,2076.978,715.767,2098.184,589.486,2075.555,468.621,2053.423,350.40999999999997,1993.3319999999999,236.72000000000003,1898.62,162.60399999999998,1810.66,93.77199999999999,1686.596,116.38400000000001,1580.567,81.27300000000002,1469.283,44.422000000000025,1370.904-90.13900000000001,1261.351-48.423,1149.246-5.73599999999999,1159.204,160.79500000000002,1099.098,264.607,1053.083,344.081,963.342,398.68899999999996,949.8779999999999,489.531,936.398,580.484,1006.0219999999999,659.003,1027.391,748.432,1055.454,865.8720000000001,993.13,1032.007,1094.996,1096.837,1197.038,1161.779,1319.076,1013.749,1440,1011.025%22 fill=%22%231c5a82%22%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id=%22SvgjsMask1027%22%3e%3crect width=%221440%22 height=%22560%22 fill=%22white%22%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e');">
+  <nav class="fixed top-0 left-0 w-full  bg-black p-4 text-white z-20">
+    <div class="container mx-auto">
+        <div class="flex justify-between items-center">
+            <div class="logo text-2xl font-bold"><span class=" text-[#4b788f]">SecureMe</span> Inc.</div>
+            <div class="navbar-links">
+                <a href="#" class="hover:text-gray-300 mr-4">Home</a>
+                <a href="#" class="hover:text-gray-300 mr-4">Login</a>
+                <a href="#" class="hover:text-gray-300 mr-4">Sign Up</a>
+            </div>
         </div>
-      </div>
-    </nav>
-
-    <h1>Password Generator</h1>
-    <form action="{{ url_for('generate_password') }}" method="post">
-      <label for="length">Password Length:</label>
-      <input type="number" name="length" value="12" min="1" required /><br />
-
-      <label>Character Types:</label><br />
-      <input type="checkbox" name="uppercase" /> Uppercase
-      <input type="checkbox" name="lowercase" checked /> Lowercase
-      <input type="checkbox" name="numbers" checked /> Numbers
-      <input type="checkbox" name="special_characters" /> Special Characters<br />
-
-      <label for="avoid_ambiguous">Avoid Ambiguous Characters:</label>
-      <input type="checkbox" name="avoid_ambiguous" /><br />
-
-      <label for="words">Words (optional, separated by spaces):</label>
-      <input type="text" name="words" /><br />
-
-      <button type="submit">Generate Password</button>
-    </form>
-
-    {% if password %}
-    <div class="password-card">
-      <h2>Generated Password:</h2>
-      <p id="password">{{ password }}</p>
-      <button class="copy-btn" onclick="copyToClipboard()">
-        <i class="fas fa-copy"></i> Copy to Clipboard
-      </button>
     </div>
-    {% endif %}
-  </body>
+</nav>
+
+
+    <div class="container mx-auto my-8 p-8 bg-white bg-opacity-20 backdrop-blur-md rounded-lg">
+        <h1 class="text-3xl font-semibold text-center mb-6 p-5">Password Generator</h1>
+         <form action="{{ url_for('generate_password') }}" method="post" class="max-w-md mx-auto mt-8 p-8 bg-white bg-opacity-20 backdrop-blur-md rounded-lg">
+
+          <label for="length" class="block text-sm font-medium text-gray-700">Password Length:</label>
+          <input type="number" name="length" value="12" min="1" required
+              class="mt-1 p-2 border rounded-md w-full focus:outline-none focus:border-blue-500" />
+          
+          <div class="mt-4">
+              <label class="block text-sm font-medium text-gray-700">Character Types:</label>
+              <div class="mt-2 space-y-2">
+                  <div class="flex items-center">
+                      <input type="checkbox" name="uppercase" class="mr-2" />
+                      <span class="text-sm">Uppercase (A-Z)</span>
+                  </div>
+                  <div class="flex items-center">
+                      <input type="checkbox" name="lowercase" checked class="mr-2" />
+                      <span class="text-sm">Lowercase (a-z)</span>
+                  </div>
+                  <div class="flex items-center">
+                      <input type="checkbox" name="numbers" checked class="mr-2" />
+                      <span class="text-sm">Numbers (0-9)</span>
+                  </div>
+                  <div class="flex items-center">
+                      <input type="checkbox" name="special_characters" class="mr-2" />
+                      <span class="text-sm">Special Characters ($ & * ! @ _ #)</span>
+                  </div>
+              </div>
+          </div>
+          
+          <div class="mt-4">
+              <label for="avoid_ambiguous" class="block text-sm font-medium text-gray-700">Avoid Ambiguous Characters (I, 1, 0, O):</label>
+              <input type="checkbox" name="avoid_ambiguous" class="mt-1" />
+          </div>
+          
+          <div class="mt-4">
+              <label for="words" class="block text-sm font-medium text-gray-700">Words (optional, separated by spaces):</label>
+              <input type="text" name="words" class="mt-1 p-2 border rounded-md w-full focus:outline-none focus:border-blue-500" />
+          </div>
+          
+          <button type="submit" class="mt-6 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none">
+              Generate Password
+          </button>
+          </form>
+
+          {% if password %}
+          <div class="password-card mt-8 p-6 bg-white bg-opacity-40 backdrop-blur-md rounded-md">
+              <h2 class="text-xl font-semibold">Generated Password:</h2>
+              <p id="password" class="text-lg font-mono">{{ password }}</p>
+              <p class="mt-2">Password Strength: {{ strength }}/5</p>
+              <button class="mt-4 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none copy-btn"
+              onclick="copyToClipboard()">
+              <i class="fas fa-copy"></i> Copy to Clipboard
+          </button>          
+          </div>
+      {% endif %}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+</b>
+
 </html>

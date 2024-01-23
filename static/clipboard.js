@@ -27,4 +27,8 @@ function copyToClipboard() {
     console.error("Unable to copy to clipboard:", err);
     /* Handle the error here, e.g., show an error message to the user */
   }
+
+ 
 }
+
+

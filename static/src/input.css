@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities; 
+
+
+
+
+/* <form action="{{ url_for('generate_password') }}" method="post" class="max-w-md mx-auto mt-8 p-8 bg-white bg-opacity-20 backdrop-blur-md rounded-lg">
+
+<label for="length" class="block text-sm font-medium text-gray-700">Password Length:</label>
+<input type="number" name="length" value="12" min="1" required
+    class="mt-1 p-2 border rounded-md w-full focus:outline-none focus:border-blue-500" />
+
+<div class="mt-4">
+    <label class="block text-sm font-medium text-gray-700">Character Types:</label>
+    <div class="mt-2 space-y-2">
+        <div class="flex items-center">
+            <input type="checkbox" name="uppercase" class="mr-2" />
+            <span class="text-sm">Uppercase (A-Z)</span>
+        </div>
+        <div class="flex items-center">
+            <input type="checkbox" name="lowercase" checked class="mr-2" />
+            <span class="text-sm">Lowercase (a-z)</span>
+        </div>
+        <div class="flex items-center">
+            <input type="checkbox" name="numbers" checked class="mr-2" />
+            <span class="text-sm">Numbers (0-9)</span>
+        </div>
+        <div class="flex items-center">
+            <input type="checkbox" name="special_characters" class="mr-2" />
+            <span class="text-sm">Special Characters ($ & * ! @ _ #)</span>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <label for="avoid_ambiguous" class="block text-sm font-medium text-gray-700">Avoid Ambiguous Characters (I, 1, 0, O):</label>
+    <input type="checkbox" name="avoid_ambiguous" class="mt-1" />
+</div>
+
+<div class="mt-4">
+    <label for="words" class="block text-sm font-medium text-gray-700">Words (optional, separated by spaces):</label>
+    <input type="text" name="words" class="mt-1 p-2 border rounded-md w-full focus:outline-none focus:border-blue-500" />
+</div>
+
+<button type="submit" class="mt-6 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none">
+    Generate Password
+</button>
+</form> */
