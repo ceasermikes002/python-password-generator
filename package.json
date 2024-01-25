@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@clerk/clerk-js": "^4.68.5",
     "flowbite": "^2.2.1"
   }
 }
