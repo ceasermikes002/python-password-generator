@@ -11,6 +11,7 @@
     <script src="{{ url_for('static', filename='clipboard.js') }}"></script>
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 </head>
 
 <body class="bg-gray-100 bg-cover" style="background-image: url('data:image/svg+xml,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 version=%221.1%22 xmlns:xlink=%22http://www.w3.org/1999/xlink%22 xmlns:svgjs=%22http://svgjs.dev/svgjs%22 width=%221440%22 height=%22560%22 preserveAspectRatio=%22none%22 viewBox=%220 0 1440 560%22%3e%3cg mask=%22url(%23SvgjsMask1027)%22 fill=%22none%22%3e%3crect width=%221440%22 height=%22560%22 x=%220%22 y=%220%22 fill=%22rgba(21,67,96,1)%22%3e%3c/rect%3e%3cpath d=%22M0,649.347C116.233,616.966,172.303,490.542,268.145,417.242C353.54,351.932,464.269,326.583,531.603,242.775C611.007,143.944,682.873,28.694,682.174,-98.082C681.441,-231.108,620.469,-361.906,527.746,-457.294C437.346,-550.292,305.953,-581.883,180.376,-614.305C58.487,-645.774,-69.433,-682.879,-188.577,-642.235C-305.906,-602.211,-394.706,-503.379,-457.733,-396.628C-514.47,-300.53,-503.214,-185.012,-523.336,-75.244C-544.448,39.921,-602.414,149.678,-578.907,264.378C-552.479,393.329,-494.711,526.343,-385.103,599.232C-275.083,672.395,-127.279,684.806,0,649.347%22 fill=%22%230e2c3e%22%3e%3c/path%3e%3cpath d=%22M1440,1011.025C1556.493,1008.4,1664.085,1116.737,1775.156,1081.513,1890.525,1044.926,1969.5929999999998,934.8620000000001,2022.8600000000001,826.183,2076.978,715.767,2098.184,589.486,2075.555,468.621,2053.423,350.40999999999997,1993.3319999999999,236.72000000000003,1898.62,162.60399999999998,1810.66,93.77199999999999,1686.596,116.38400000000001,1580.567,81.27300000000002,1469.283,44.422000000000025,1370.904-90.13900000000001,1261.351-48.423,1149.246-5.73599999999999,1159.204,160.79500000000002,1099.098,264.607,1053.083,344.081,963.342,398.68899999999996,949.8779999999999,489.531,936.398,580.484,1006.0219999999999,659.003,1027.391,748.432,1055.454,865.8720000000001,993.13,1032.007,1094.996,1096.837,1197.038,1161.779,1319.076,1013.749,1440,1011.025%22 fill=%22%231c5a82%22%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id=%22SvgjsMask1027%22%3e%3crect width=%221440%22 height=%22560%22 fill=%22white%22%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e');">
@@ -18,18 +19,13 @@
     <div class="container mx-auto">
         <div class="flex justify-between items-center">
            <a href="/"> <div class="logo text-2xl font-bold"><span class=" text-[#4b788f]">SecureMe</span> Inc.</div></a>
-            <!-- <div class="navbar-links">
-                <a href="#" class="hover:text-gray-300 mr-4">Home</a>
-                <a href="#" class="hover:text-gray-300 mr-4">Login</a>
-                <a href="#" class="hover:text-gray-300 mr-4">Sign Up</a>
-            </div> -->
         </div>
     </div>
   </nav>
 
 
     <div class="container mx-auto my-8 p-8 bg-white bg-opacity-15 backdrop-blur-sm rounded-lg">
-        <h1 class="font-semibold text-4xl text-center mb-6 p-5">Password Generator</h1>
+        <h1 class="font-semibold text-4xl text-center mb-6 p-5" id="typed-text">Password Generator</h1>
          <form action="{{ url_for('generate_password') }}" method="post" class="max-w-md mx-auto mt-8 p-8 bg-white bg-opacity-20 backdrop-blur-md rounded-lg">
 
           <label for="length" class="block text-sm font-medium text-gray-700">Password Length:</label>
@@ -68,7 +64,7 @@
               <input type="text" name="words" class="mt-1 p-2 border rounded-md w-full focus:outline-none focus:border-blue-500" />
           </div>
           
-          <button type="submit" class="mt-6 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none">
+          <button type="submit" class="mt-6 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-500 focus:outline-none">
               Generate Password
           </button>
           </form>
@@ -88,6 +84,18 @@
     <footer class="bg-black text-white text-center py-4">
         <p class="text-sm" id="copyright"></p>
     </footer>
+    <script>
+        // Initialize Typed.js
+        var typed = new Typed('#typed-text', {
+            strings: ['Password Generator', 'Made for Secure Inc.'],
+            typeSpeed: 100, // typing speed in milliseconds
+            backSpeed: 80, // backspacing speed in milliseconds
+            startDelay: 500, // delay before typing starts
+            backDelay: 500, // delay before backspacing starts
+            loop: true, // set to true for continuous looping
+            showCursor: false // hide the cursor
+        });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 
     <script>

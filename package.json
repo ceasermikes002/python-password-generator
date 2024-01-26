@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@clerk/clerk-js": "^4.68.5",
-    "flowbite": "^2.2.1"
+    "flowbite": "^2.2.1",
+    "typed.js": "^2.1.0"
   }
 }
