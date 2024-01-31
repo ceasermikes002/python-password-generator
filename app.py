@@ -28,9 +28,6 @@ def generate_password():
         return render_template('index.html', password=password)
     
 
-from flask import Flask, render_template, request
-import secrets
-import string
 
 app = Flask(__name__)
 
